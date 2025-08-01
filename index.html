@@ -1,26 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Labirynt</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet" />
 </head>
 
 <body>
     <div class="startScreen">
+        <div class="entrance">
+            <img src="assets/whiteEntrance.png" alt="labirynt startowy" />
+        </div>
         <h1 class="show">Naciśnij <span>start</span>, aby rozpocząć grę</h1>
         <div class="game">
-            <button class="startButton"> >Start< </button>
+            <button class="startButton">&gt;Start&lt;</button>
         </div>
     </div>
+
     <div class="mazeContainer">
-        <h1>To jest labirynt</h1>
+        <h1>Znajdź drogę!</h1>
+        <div class="maze"></div>
+
+        <div class="control">
+            <button class="up">^</button><br />
+            <button class="left">
+                < </button>
+                    <button class="down">v</button>
+                    <button class="right">></button>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
