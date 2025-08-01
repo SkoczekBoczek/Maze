@@ -13,32 +13,51 @@ const mazePattern = Array.from({ length: size }, () => Array(size).fill(0));
 const startPosition = { row: 1, col: 1 };
 const goalPosition = { row: 13, col: 13 };
 
+// generateMaze();
+
 for (let row = 0; row < size; row++) {
 	for (let col = 0; col < size; col++) {
 		const cell = document.createElement("div");
 		cell.classList.add("cell");
 		if (row === 0 || row === size - 1 || col === 0 || col === size - 1) {
-			cell.classList.add("wall");
-			mazePattern[row][col] = 1; // Ściana
+			mazePattern[row][col] = 1;
 		}
-
 		if (row === startPosition.row && col === startPosition.col) {
 			cell.classList.add("start");
 		}
 		if (row === goalPosition.row && col === goalPosition.col) {
 			cell.classList.add("exit");
 		}
+		if (mazePattern[row][col] === 1) {
+			cell.classList.add("wall");
+		}
+
 		maze.appendChild(cell);
 	}
 }
 
+function generateMaze() {}
+
 function updatePlayerPosition() {
-	document
-		.querySelectorAll(".cell")
-		.forEach((cell) => cell.classList.remove("start"));
+	const cells = document.querySelectorAll(".cell");
+	cells.forEach((cell) => {
+		cell.classList.remove("start");
+	});
 	const index = startPosition.row * size + startPosition.col;
-	document.querySelectorAll(".cell")[index].classList.add("start");
+	cells[index].classList.add("start");
 }
+
+document.addEventListener("keydown", (e) => {
+	if (e.key === "ArrowUp") {
+		upBtn.click();
+	} else if (e.key === "ArrowDown") {
+		downBtn.click();
+	} else if (e.key === "ArrowLeft") {
+		leftBtn.click();
+	} else if (e.key === "ArrowRight") {
+		rightBtn.click();
+	}
+});
 
 leftBtn.addEventListener("click", () => {
 	let { row, col } = startPosition;
@@ -46,7 +65,6 @@ leftBtn.addEventListener("click", () => {
 		col--;
 		startPosition.col = col;
 		updatePlayerPosition();
-		console.log(`Moved to: (${row}, ${col})`);
 	}
 });
 
@@ -56,7 +74,6 @@ rightBtn.addEventListener("click", () => {
 		col++;
 		startPosition.col = col;
 		updatePlayerPosition();
-		console.log(`Moved to: (${row}, ${col})`);
 	}
 });
 
@@ -66,7 +83,6 @@ upBtn.addEventListener("click", () => {
 		row--;
 		startPosition.row = row;
 		updatePlayerPosition();
-		console.log(`Moved to: (${row}, ${col})`);
 	}
 });
 
@@ -76,7 +92,6 @@ downBtn.addEventListener("click", () => {
 		row++;
 		startPosition.row = row;
 		updatePlayerPosition();
-		console.log(`Moved to: (${row}, ${col})`);
 	}
 });
 
