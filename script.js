@@ -13,7 +13,7 @@ const mazePattern = Array.from({ length: size }, () => Array(size).fill(0));
 const startPosition = { row: 1, col: 1 };
 const goalPosition = { row: 13, col: 13 };
 
-// generateMaze();
+generateMaze();
 
 for (let row = 0; row < size; row++) {
 	for (let col = 0; col < size; col++) {
@@ -36,7 +36,49 @@ for (let row = 0; row < size; row++) {
 	}
 }
 
-function generateMaze() {}
+function generateMaze() {
+	for (let row = 0; row < size; row++) {
+		for (let col = 0; col < size; col++) {
+			mazePattern[row][col] = 1;
+		}
+	}
+
+	const visited = Array.from({ length: size }, () => Array(size).fill(false));
+
+	function visit(row, col) {
+		visited[row][col] = true;
+		mazePattern[row][col] = 0;
+
+		const directions = [
+			{ row: -2, col: 0 }, // Góra
+			{ row: 2, col: 0 }, // Dół
+			{ row: 0, col: -2 }, // Lewo
+			{ row: 0, col: 2 }, // Prawo
+		];
+		directions.sort(() => Math.random() - 0.5);
+
+		for (dir of directions) {
+			const newRow = row + dir.row;
+			const newCol = col + dir.col;
+
+			if (
+				newRow > 0 &&
+				newCol > 0 &&
+				newRow < size - 1 &&
+				newCol < size - 1 &&
+				!visited[newRow][newCol]
+			) {
+				wallRow = row + dir.row / 2;
+				wallCol = col + dir.col / 2;
+
+				mazePattern[wallRow][wallCol] = 0;
+				visit(newRow, newCol);
+			}
+		}
+	}
+
+	visit(startPosition.row, startPosition.col);
+}
 
 function updatePlayerPosition() {
 	const cells = document.querySelectorAll(".cell");
