@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/0a722edb74.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -27,11 +28,22 @@
         <div class="maze"></div>
 
         <div class="control">
-            <button class="up">^</button><br />
-            <button class="left">
-                < </button>
-                    <button class="down">v</button>
-                    <button class="right">></button>
+            <div class="row row-up">
+                <button class="up"><i class="fa-solid fa-angle-up"></i></button>
+            </div>
+            <div class="row row-middle">
+                <button class="left"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="down"><i class="fa-solid fa-angle-down"></i></button>
+                <button class="right"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="finishScreen">
+        <div class="finishContent">
+            <h1>Gratulacje, ale dokąd teraz?</h1>
+            <img src="assets/finishEmoji.svg" alt="happy emoji" />
         </div>
     </div>
 

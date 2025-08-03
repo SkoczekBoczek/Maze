@@ -1,5 +1,6 @@
 const startScreen = document.querySelector(".startScreen");
 const mazeContainer = document.querySelector(".mazeContainer");
+const finishScreen = document.querySelector(".finishScreen");
 const startBtn = document.querySelector(".startButton");
 const maze = document.querySelector(".maze");
 
@@ -87,6 +88,17 @@ function updatePlayerPosition() {
 	});
 	const index = startPosition.row * size + startPosition.col;
 	cells[index].classList.add("start");
+	checkWin();
+}
+
+function checkWin() {
+	if (
+		startPosition.row === goalPosition.row &&
+		startPosition.col === goalPosition.col
+	) {
+		mazeContainer.style.display = "none";
+		finishScreen.style.display = "flex";
+	}
 }
 
 document.addEventListener("keydown", (e) => {
